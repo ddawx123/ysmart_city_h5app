@@ -1,0 +1,56 @@
+.page__hd {
+    padding: 1rem 1rem;
+    text-align: center;
+    background-color: #3bb4f2;
+}
+
+.page__title {
+    color: #fff;
+    text-align: center;
+    background-color: #3bb4f2;
+}
+
+.page__desc {
+    font-size: 13px;
+    color: #f8f8f8;
+    text-align: center;
+    background-color: #3bb4f2;
+}
+
+.weui-media-box__thumb {
+    height: 35px;
+    width: 35px;
+}
+
+.button-sp-area {
+    padding: 30rem 35rem;
+}
+
+button[type="primary"][plain] {
+    color: #fff;
+    border: 1px solid #dafdd3;
+    background-image: linear-gradient(to top, #24cf8e 0%, #26cbd1 100%);
+}
+
+.button-hover[type="primary"][plain] {
+    color: #fff;
+    border-color: #96deda;
+    opacity: 0.6;
+}
+
+button[type="default"][plain] {
+    color: #fff;
+    border: 1px solid #fbc2eb;
+    background-image: linear-gradient(-45deg, #ff8edf 0%, #8eb5f7 100%);
+}
+
+.button-hover[type="default"][plain] {
+    color: #fff;
+    border-color: #fbc2eb;
+    opacity: 0.6;
+}
+
+.click-search {
+    display: inline-block;
+    color: #586c94;
+}
