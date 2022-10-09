@@ -12,7 +12,18 @@ class BusQueryForm extends Component {
     }
     componentDidUpdate(prevProps, prevState) {
     }
-
+    handleChange = (element) => {
+        this.setState({
+            keyword: element.target.value
+        })
+    }
+    searchByKeyword() {
+        if (this.state.keyword === '') {
+            alert('站点名必须存在');
+        } else {
+            console.log(this.state.keyword)
+        }
+    }
     render() {
         return (
             <div>
@@ -29,11 +40,11 @@ class BusQueryForm extends Component {
                                 <div className="weui-label">站点名称</div>
                             </div>
                             <div className="weui-cell__bd">
-                                <input className="weui-input" type="text" placeholder="请输入站点名称" />
+                                <input className="weui-input" type="text" placeholder="请输入站点名称" value={this.state.keyword} onChange={this.handleChange.bind(this)} />
                             </div>
                         </div>
                     </div>
-                    <button className="weui-btn weui-btn_primary weui-btn_mini">立即查询</button>
+                    <button className="weui-btn weui-btn_primary weui-btn_mini" onClick={this.searchByKeyword.bind(this)}>立即查询</button>
                     <button className="weui-btn weui-btn_default weui-btn_mini">站台扫码一键查询</button>
                     <ul style={{fontSize: '10px', padding: '10px', textAlign: 'left'}}>
                         <li>温馨提示：</li>
