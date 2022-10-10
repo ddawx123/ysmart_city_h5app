@@ -54,3 +54,19 @@ button[type="default"][plain] {
     display: inline-block;
     color: #586c94;
 }
+
+.display-type_0 {
+    color: #00BFFF;
+}
+
+.display-type_1 {
+    color: #228B22;
+}
+
+.display-type_2 {
+    color: #FF69B4;
+}
+
+.display-type_3 {
+    color: #FFA000;
+}
