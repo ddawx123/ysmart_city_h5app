@@ -1,24 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, hashHistory, Switch } from 'react-router-dom';
-import HomePage from './Components/Home/Dashboard';
-import GPACalculator from './Components/Utils/GPACalculator';
-import HealthCodeCenter from './Components/Utils/HealthCodeCenter';
-import LoginPage  from './Components/User/Login';
-import UndefinedPage from './Components/Exception/UndefinedPage';
-import './Components/darkSupport.css';
-import BusQueryForm from "./Components/CityIntelligence/bus";
+import HomePage from './Pages/Home/Dashboard';
+import GPACalculator from './Pages/Utils/GPACalculator';
+import HealthCodeCenter from './Pages/Utils/HealthCodeCenter';
+import LoginPage  from './Pages/User/Login';
+import UndefinedPage from './Pages/Exception/UndefinedPage';
+import './Pages/darkSupport.css';
+import BusQueryForm from "./Pages/CityIntelligence/bus";
+import BusDetailScreen from "./Pages/CityIntelligence/bus/detail";
 
 
 ReactDOM.render(
   <Router history={ hashHistory }>
     <Switch>
       <Route path="/" exact component={ HomePage } />
-      <Route path="/bus" component={ BusQueryForm } />
-      <Route path="/gpaCalculator" component={ GPACalculator } />
-      <Route path="/utilsBox/healthCodeCenter" component={ HealthCodeCenter } />
-      <Route path="/Login" component={ LoginPage } />
-      <Route path="*" component={ UndefinedPage } />
+      <Route path="/bus" exact component={ BusQueryForm } />
+      <Route path="/bus/detail" exact component={ BusDetailScreen } />
+      <Route path="/gpaCalculator" exact component={ GPACalculator } />
+      <Route path="/utilsBox/healthCodeCenter" exact component={ HealthCodeCenter } />
+      <Route path="/Login" exact component={ LoginPage } />
+      <Route path="*" exact component={ UndefinedPage } />
     </Switch>
   </Router>,
   document.getElementById('root')
