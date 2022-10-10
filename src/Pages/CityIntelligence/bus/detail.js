@@ -9,6 +9,7 @@ export default class BusDetailScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            regionId: '',
             stationId: '',
             vehicleList: [],
             isLoad: false,
@@ -16,33 +17,36 @@ export default class BusDetailScreen extends Component {
         };
     }
     componentWillMount() {
-        if (this.props.location.search.split('id=').length === 0) {
-            alert('调用非法，不支持的操作。');
+        if (this.props.location.search.split('stationId=').length <= 1 || this.props.location.search.split('regionId=').length <= 1) {
+            console.log('无有效参数');
         } else {
             this.setState({
-                stationId: this.props.location.search.split('id=')[1]
+                stationId: this.props.location.search.split('stationId=')[1],
+                regionId: this.props.location.search.split('regionId=')[1]
             })
         }
     }
     componentDidMount() {
-        HttpClient.post('https://api.dscitech.com/api/bus/station/detail', {
-            keyword: this.state.stationId,
-            regionId: '330600'
-        }).then((response) => {
-            response.json().then((res) => {
-                console.log(res);
-                this.setState({
-                    vehicleList: res
-                });
-            }).catch((err) => {
-                console.log(err);
-                alert('数据解析异常，请稍后重试');
-            })
-        }).catch((error) => {
-            console.log(error);
-            alert('网络连接异常');
-        });
-        this.setAutoRefresh();
+        if (this.state.regionId !== '' && this.state.stationId !== '') {
+            HttpClient.post('https://api.dscitech.com/api/bus/station/detail', {
+                keyword: this.state.stationId,
+                regionId: this.state.regionId
+            }).then((response) => {
+                response.json().then((res) => {
+                    console.log(res);
+                    this.setState({
+                        vehicleList: res
+                    });
+                }).catch((err) => {
+                    console.log(err);
+                    alert('数据解析异常，请稍后重试');
+                })
+            }).catch((error) => {
+                console.log(error);
+                alert('网络连接异常');
+            });
+            this.setAutoRefresh();
+        }
     }
     setAutoRefresh() {
         if (!this.state.isLoad) {
