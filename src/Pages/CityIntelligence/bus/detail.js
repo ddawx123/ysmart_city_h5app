@@ -21,22 +21,24 @@ export default class BusDetailScreen extends Component {
             console.log('无有效参数');
         } else {
             this.setState({
-                stationId: this.props.location.search.split('stationId=')[1],
-                regionId: this.props.location.search.split('regionId=')[1]
+                stationId: this.props.location.search.split('stationId=')[1].split('&')[0],
+                regionId: this.props.location.search.split('regionId=')[1].split('&')[0]
             })
         }
     }
     componentDidMount() {
         if (this.state.regionId !== '' && this.state.stationId !== '') {
+            let that = this;
             HttpClient.post('https://api.dscitech.com/api/bus/station/detail', {
-                keyword: this.state.stationId,
-                regionId: this.state.regionId
+                keyword: that.state.stationId,
+                city: that.state.regionId
             }).then((response) => {
                 response.json().then((res) => {
                     console.log(res);
-                    this.setState({
+                    that.setState({
                         vehicleList: res
                     });
+                    that.setAutoRefresh();
                 }).catch((err) => {
                     console.log(err);
                     alert('数据解析异常，请稍后重试');
@@ -45,7 +47,6 @@ export default class BusDetailScreen extends Component {
                 console.log(error);
                 alert('网络连接异常');
             });
-            this.setAutoRefresh();
         }
     }
     setAutoRefresh() {
@@ -55,7 +56,7 @@ export default class BusDetailScreen extends Component {
             let timer = window.setInterval(() => {
                 HttpClient.post('https://api.dscitech.com/api/bus/station/detail', {
                     keyword: that.state.stationId,
-                    regionId: '330600'
+                    city: that.state.regionId
                 }).then((response) => {
                     response.json().then((res) => {
                         console.log(res);
