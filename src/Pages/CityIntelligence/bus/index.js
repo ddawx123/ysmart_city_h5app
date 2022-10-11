@@ -37,9 +37,13 @@ class BusQueryForm extends Component {
             }).then((response) => {
                 response.json().then((res) => {
                     console.log(res);
-                    this.setState({
-                        stationList: res.data
-                    });
+                    if (res.data.length === 0) {
+                        wx.alert('站点搜索结果为空，请确认输入是否正确。');
+                    } else {
+                        this.setState({
+                            stationList: res.data
+                        });
+                    }
                 }).catch((err) => {
                     console.log(err);
                     wx.alert('数据解析异常，请稍后重试');
