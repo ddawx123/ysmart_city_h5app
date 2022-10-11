@@ -4,6 +4,7 @@ import busIcon from './images/bus.png';
 import './index.css';
 import { HttpClient } from '../../../Api/httpClient'
 import VehicleScreen from "./vehicleScreen";
+import wx from 'weui.js';
 
 export default class BusDetailScreen extends Component {
     constructor(props) {
@@ -41,11 +42,11 @@ export default class BusDetailScreen extends Component {
                     that.setAutoRefresh();
                 }).catch((err) => {
                     console.log(err);
-                    alert('数据解析异常，请稍后重试');
+                    wx.alert('数据解析异常，请稍后重试');
                 })
             }).catch((error) => {
                 console.log(error);
-                alert('网络连接异常');
+                wx.alert('网络连接异常');
             });
         }
     }
@@ -66,12 +67,12 @@ export default class BusDetailScreen extends Component {
                     }).catch((err) => {
                         window.clearInterval(that.state.myTimer); //服务异常时自动停止刷新定时器
                         console.log(err);
-                        alert('数据解析异常，请稍后重试');
+                        wx.alert('数据解析异常，请稍后重试');
                     })
                 }).catch((error) => {
                     window.clearInterval(that.state.myTimer); //网络异常时自动停止刷新定时器
                     console.log(error);
-                    alert('网络连接异常');
+                    wx.alert('网络连接异常');
                 })
             }, 5000);
             this.setState({ myTimer: timer })

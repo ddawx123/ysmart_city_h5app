@@ -70,3 +70,7 @@ button[type="default"][plain] {
 .display-type_3 {
     color: #FFA000;
 }
+
+.weui-dialog__bd:first-child {
+    color: #fff;
+}

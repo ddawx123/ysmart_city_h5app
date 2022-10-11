@@ -4,6 +4,7 @@ import busIcon from './images/bus.png';
 import './index.css';
 import { HttpClient } from '../../../Api/httpClient'
 import SearchResult from "./searchResult";
+import wx from 'weui.js';
 
 class BusQueryForm extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class BusQueryForm extends Component {
     }
     searchByKeyword() {
         if (this.state.keyword === '') {
-            alert('站点名必须存在');
+            wx.alert('站点名必须存在');
         } else {
             console.log(this.state.keyword)
             console.log(HttpClient);
@@ -41,11 +42,11 @@ class BusQueryForm extends Component {
                     });
                 }).catch((err) => {
                     console.log(err);
-                    alert('数据解析异常，请稍后重试');
+                    wx.alert('数据解析异常，请稍后重试');
                 })
             }).catch((error) => {
                 console.log(error);
-                alert('网络连接异常');
+                wx.alert('网络连接异常');
             });
         }
     }
@@ -71,10 +72,9 @@ class BusQueryForm extends Component {
                                 </div>
                             </div>
                         </div>
-                        <button className="weui-btn weui-btn_primary weui-btn_mini"
-                                onClick={this.searchByKeyword.bind(this)}>立即查询
+                        <button className="weui-btn weui-btn_primary weui-btn_mini" onClick={this.searchByKeyword.bind(this)}>立即查询
                         </button>
-                        <button className="weui-btn weui-btn_default weui-btn_mini">站台扫码一键查询</button>
+                        <button className="weui-btn weui-btn_default weui-btn_mini" onClick={() => {top.location.href="https://qr.dingplace.com/scanCode.html?from=city_h5webapp"}}>站台扫码一键查询</button>
                         <ul style={{fontSize: '10px', padding: '10px', textAlign: 'left'}}>
                             <li>温馨提示：</li>
                             <li>* 本服务由绍兴、杭州两地公共交通集团有限公司提供数据支撑，信息仅供参考</li>

@@ -10,7 +10,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "0.9.5",
     "react-weui": "^1.2.3",
-    "weui": "^1.1.0"
+    "weui": "^1.1.0",
+    "weui.js": "^1.2.15"
   },
   "devDependencies": {},
   "scripts": {
