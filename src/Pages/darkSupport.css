@@ -1,18 +1,18 @@
 @media (prefers-color-scheme:dark) {
     body, div {
-        background-color: #222;
-        color: #fff;
+        background-color: #222 !important;
+        color: #fff !important;
     }
     .weui-panel__hd {
-        background-color: #222;
-        color: #fff;
+        background-color: #222 !important;
+        color: #fff !important;
     }
     .weui-panel__bd {
-        background-color: #222;
-        color: #fff;
+        background-color: #222 !important;
+        color: #fff !important;
     }
     .weui-grid__label {
-        background-color: #222;
-        color: #fff;
+        background-color: #222 !important;
+        color: #fff !important;
     }
 }
