@@ -46,7 +46,7 @@ export default class BusDetailScreen extends Component {
                 })
             }).catch((error) => {
                 console.log(error);
-                wx.alert('网络连接异常');
+                wx.alert('网git络连接异常');
             });
         }
     }

@@ -6,6 +6,7 @@ import Header from '../../Layout/Header';
 import TabBar from '../../Layout/Tabbar';
 import busIcon from '../../CityIntelligence/bus/images/bus.png';
 import weatherIcon from '../../../Images/weather_sunIcon.svg';
+import {HttpClient} from "../../../Api/httpClient";
 
 class Dashboard extends Component {
     componentWillMount() {
@@ -31,7 +32,32 @@ class Dashboard extends Component {
                 label: '公交查询',
                 href: '#/bus'
             }],
-            headerTip: tipText
+            headerTip: tipText,
+            weatherInfo: {
+                city: '未知',
+                temp: '?',
+                tempn: '?',
+                weather: '天气待获取',
+                wd: '风向待获取',
+                ws: '风速待获取'
+            }
+        });
+    }
+    componentDidMount() {
+        let that = this;
+        HttpClient.get('https://api.dscitech.com/api/weather').then((response) => {
+            response.json().then((res) => {
+                console.log(res);
+                if (res.code === 200) {
+                    that.setState({
+                        weatherInfo: res.data.weatherinfo
+                    });
+                }
+            }).catch((err) => {
+                console.log(err);
+            })
+        }).catch((error) => {
+            console.log(error);
         });
     }
     render() {
@@ -46,9 +72,9 @@ class Dashboard extends Component {
                         <MediaBox type="appmsg" href="#/">
                             <MediaBoxHeader><img src={weatherIcon} alt="icon" /></MediaBoxHeader>
                             <MediaBoxBody>
-                                <MediaBoxTitle>杭州 晴 9℃~19℃</MediaBoxTitle>
+                                <MediaBoxTitle>{this.state.weatherInfo.city} {this.state.weatherInfo.weather} {this.state.weatherInfo.tempn}℃~{this.state.weatherInfo.temp}℃</MediaBoxTitle>
                                 <MediaBoxDescription>
-                                    未来3小时内降雨概率undefined
+                                    {this.state.weatherInfo.wd + ' ' + this.state.weatherInfo.ws}
                                 </MediaBoxDescription>
                             </MediaBoxBody>
                         </MediaBox>
