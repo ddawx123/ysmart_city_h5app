@@ -32,9 +32,11 @@ class BusQueryForm extends Component {
         } else {
             console.log(this.state.keyword)
             console.log(HttpClient);
+            let loading = wx.loading('查询中');
             HttpClient.post('https://api.dscitech.com/api/bus/station/search', {
                 keyword: this.state.keyword
             }).then((response) => {
+                loading.hide();
                 response.json().then((res) => {
                     console.log(res);
                     if (res.data.length === 0) {
@@ -49,6 +51,7 @@ class BusQueryForm extends Component {
                     wx.alert('数据解析异常，请稍后重试');
                 })
             }).catch((error) => {
+                loading.hide();
                 console.log(error);
                 wx.alert('网络连接异常');
             });
