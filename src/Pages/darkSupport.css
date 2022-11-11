@@ -15,4 +15,7 @@
         background-color: #222;
         color: #fff !important;
     }
+    .weui-dialog__bd:first-child {
+        color: #fff;
+    }
 }

@@ -5,8 +5,16 @@ import 'react-weui/build/packages/react-weui.css';
 import Header from '../../Layout/Header';
 import TabBar from '../../Layout/Tabbar';
 import busIcon from '../../CityIntelligence/bus/images/bus.png';
+import metroIcon from '../../../Images/metro.svg';
+import trafficIcon from '../../../Images/traffic.svg';
+import libraryIcon from '../../../Images/library.svg';
+import eatIcon from '../../../Images/eat.svg';
+import travelIcon from '../../../Images/travel.svg';
+import weatherIcon from '../../../Images/weather.svg';
+import railwayIcon from '../../../Images/railway.svg';
+import airportIcon from '../../../Images/airport.svg';
 import nuclearAcidIcon from '../../CityIntelligence/healthy/images/nuclearAcid.png';
-import weatherIcon from '../../../Images/weather_sunIcon.svg';
+import './index.css';
 import {HttpClient} from "../../../Api/httpClient";
 
 class Dashboard extends Component {
@@ -30,8 +38,36 @@ class Dashboard extends Component {
         this.setState({
             gridList: [{
                 icon: <img src={busIcon} alt="icon" />,
-                label: '公交查询',
+                label: '实时公交',
                 href: '#/bus'
+            }, {
+                icon: <img src={metroIcon} alt="icon" />,
+                label: '地铁查询',
+                href: '#/metro'
+            }, {
+                icon: <img src={trafficIcon} alt="icon" />,
+                label: '道路拥堵指数',
+                href: '#/traffic'
+            }, {
+                icon: <img src={libraryIcon} alt="icon" />,
+                label: '图书馆服务',
+                href: '#/library'
+            }, {
+                icon: <img src={eatIcon} alt="icon" />,
+                label: '干饭助手',
+                href: '#/eat'
+            }, {
+                icon: <img src={travelIcon} alt="icon" />,
+                label: '旅游服务',
+                href: '#/travel'
+            }, {
+                icon: <img src={railwayIcon} alt="icon" />,
+                label: '高铁大屏',
+                href: '#/railway'
+            }, {
+                icon: <img src={airportIcon} alt="icon" />,
+                label: '民航服务',
+                href: '#/airport'
             }, {
                 icon: <img src={nuclearAcidIcon} alt="icon" />,
                 label: '核酸结果查询',
@@ -75,7 +111,7 @@ class Dashboard extends Component {
                     </PanelHeader>
                     <PanelBody>
                         <MediaBox type="appmsg" href="#/">
-                            <MediaBoxHeader><img src={weatherIcon} alt="icon" /></MediaBoxHeader>
+                            <MediaBoxHeader><img src={weatherIcon} className="weatherIcon" alt="icon" /></MediaBoxHeader>
                             <MediaBoxBody>
                                 <MediaBoxTitle>{this.state.weatherInfo.city} {this.state.weatherInfo.weather} {this.state.weatherInfo.tempn}℃~{this.state.weatherInfo.temp}℃</MediaBoxTitle>
                                 <MediaBoxDescription>

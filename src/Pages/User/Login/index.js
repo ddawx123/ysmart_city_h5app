@@ -5,6 +5,7 @@ import 'react-weui/build/packages/react-weui.css';
 import './index.css';
 import Header from '../../Layout/Header';
 import vcodeSrc from '../../logo.svg';
+import TabBar from "../../Layout/Tabbar";
 
 class Login extends Component {
   componentWillMount() {
@@ -60,6 +61,7 @@ class Login extends Component {
           <br />
           &copy; 2012-{this.state.fullYear} DingStudio Technology
         </p>
+        <TabBar />
       </div>
     );
   }

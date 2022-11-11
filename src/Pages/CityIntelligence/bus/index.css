@@ -71,8 +71,3 @@ button[type="default"][plain] {
     color: #FFA000;
 }
 
-@media (prefers-color-scheme:dark) {
-    .weui-dialog__bd:first-child {
-        color: #fff;
-    }
-}

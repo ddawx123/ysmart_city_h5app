@@ -30,10 +30,12 @@ export default class BusDetailScreen extends Component {
     componentDidMount() {
         if (this.state.regionId !== '' && this.state.stationId !== '') {
             let that = this;
+            let loading = wx.loading('加载中');
             HttpClient.post('https://api.dscitech.com/api/bus/station/detail', {
                 keyword: that.state.stationId,
                 city: that.state.regionId
             }).then((response) => {
+                loading.hide();
                 response.json().then((res) => {
                     console.log(res);
                     that.setState({
@@ -45,6 +47,7 @@ export default class BusDetailScreen extends Component {
                     wx.alert('数据解析异常，请稍后重试');
                 })
             }).catch((error) => {
+                loading.hide();
                 console.log(error);
                 wx.alert('网git络连接异常');
             });
@@ -79,6 +82,9 @@ export default class BusDetailScreen extends Component {
         }
     }
     componentDidUpdate(prevProps, prevState) {}
+    componentWillUnmount() {
+        window.clearInterval(this.state.myTimer);
+    }
     render() {
         return (
             <div>

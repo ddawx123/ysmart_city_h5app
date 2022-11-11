@@ -3,3 +3,17 @@
     position: fixed;
     width: 100%;
 }
+.weui-tabbar__label {
+    color: #000;
+}
+.weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+    color: #000;
+}
+@media (prefers-color-scheme:dark) {
+    .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+        color: #fff;
+    }
+    .weui-tabbar__label {
+        color: #fff;
+    }
+}
