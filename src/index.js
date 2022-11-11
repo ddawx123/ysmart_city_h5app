@@ -9,6 +9,7 @@ import UndefinedPage from './Pages/Exception/UndefinedPage';
 import './Pages/darkSupport.css';
 import BusQueryForm from "./Pages/CityIntelligence/bus";
 import BusDetailScreen from "./Pages/CityIntelligence/bus/detail";
+import NuclearAcidQuery from "./Pages/CityIntelligence/healthy/nuclearAcidQuery";
 
 
 ReactDOM.render(
@@ -17,6 +18,7 @@ ReactDOM.render(
       <Route path="/" exact component={ HomePage } />
       <Route path="/bus" exact component={ BusQueryForm } />
       <Route path="/bus/detail" exact component={ BusDetailScreen } />
+      <Route path="/healthy/nuclearAcid" exact component={ NuclearAcidQuery } />
       <Route path="/gpaCalculator" exact component={ GPACalculator } />
       <Route path="/utilsBox/healthCodeCenter" exact component={ HealthCodeCenter } />
       <Route path="/Login" exact component={ LoginPage } />

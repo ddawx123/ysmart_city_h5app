@@ -1,0 +1,16 @@
+.page__hd[data-r-healthy] {
+    background: linear-gradient(45deg, #5a92e1, #00ab66);
+    text-align: center;
+    padding: 1rem 1rem;
+}
+.page__title[data-r-healthy] {
+    background: transparent;
+    text-align: center;
+    color: #fff;
+}
+.page__desc[data-r-healthy] {
+    background: transparent;
+    text-align: center;
+    font-size: 13px;
+    color: #eee;
+}

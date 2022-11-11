@@ -5,6 +5,7 @@ import 'react-weui/build/packages/react-weui.css';
 import Header from '../../Layout/Header';
 import TabBar from '../../Layout/Tabbar';
 import busIcon from '../../CityIntelligence/bus/images/bus.png';
+import nuclearAcidIcon from '../../CityIntelligence/healthy/images/nuclearAcid.png';
 import weatherIcon from '../../../Images/weather_sunIcon.svg';
 import {HttpClient} from "../../../Api/httpClient";
 
@@ -31,6 +32,10 @@ class Dashboard extends Component {
                 icon: <img src={busIcon} alt="icon" />,
                 label: '公交查询',
                 href: '#/bus'
+            }, {
+                icon: <img src={nuclearAcidIcon} alt="icon" />,
+                label: '核酸结果查询',
+                href: '#/healthy/nuclearAcid'
             }],
             headerTip: tipText,
             weatherInfo: {

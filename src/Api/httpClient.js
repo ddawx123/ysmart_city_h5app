@@ -3,7 +3,7 @@
  */
 
 export class HttpClient {
-    static get(url) {
+    static get(url = '') {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 "headers": {
@@ -18,7 +18,7 @@ export class HttpClient {
             });
         })
     }
-    static post(url, param = {}) {
+    static post(url = '/', param = {}) {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 "headers": {
