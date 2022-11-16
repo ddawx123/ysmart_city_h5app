@@ -4,7 +4,7 @@ import nuclearAcidIcon from './images/nuclearAcid.png';
 import './nuclearAcidQuery.css';
 import { HttpClient } from '../../../Api/httpClient'
 import wx from 'weui.js';
-import CryptoJS from 'crypto-js';
+import md5 from 'js-md5';
 
 export default class NuclearAcidQuery extends Component {
     constructor(props) {
@@ -20,7 +20,6 @@ export default class NuclearAcidQuery extends Component {
     }
     componentDidMount() {
         console.log('组件挂载完成');
-        window.dg = CryptoJS; // 前端注入加解密调试器
     }
     getNuclearAcid() {
         if (this.state.realName === '' || this.state.idNumber === '') {
@@ -29,41 +28,44 @@ export default class NuclearAcidQuery extends Component {
         }
         let loading = wx.loading('查询中');
         let that = this;
-        let send_at = (new Date().getFullYear()) + '-' + (new Date().getMonth() + 1) +  '-' + (new Date().getDate()) + ' ' + (new Date().getHours() >= 10 ? new Date().getHours() : '0'+(new Date().getHours())) + ':00:00';
-        send_at = new Date(send_at).getTime() / 1000;
-        HttpClient.post('http://106.12.131.105:8080/v1/healthy/nuclear-acid?token=' + CryptoJS.MD5(send_at.toString()).toString(), {
+        let send_at = (new Date().getFullYear());
+        HttpClient.post('http://106.12.131.105:8080/v1/healthy/nuclear-acid?token='+md5(send_at+'|'+navigator.userAgent), {
             realName: that.state.realName,
             idNumber: that.state.idNumber
         }).then((response) => {
             loading.hide();
             response.json().then((res) => {
                 console.log(res);
-                switch (res.code) {
-                    case 200:
-                        if (res.data.length === 0) {
-                            wx.alert('您所查询的人员在浙江省内暂无核酸检测记录︿(￣︶￣)︿');
-                        } else {
-                            that.setState({
-                                rnaReport: res.data
-                            });
-                        }
-                        break;
-                    case 400:
-                        wx.alert(res.msg);
-                        break;
-                    case 401:
-                        wx.alert('未授权的访问');
-                        break;
-                    case 403:
-                        wx.alert('访问密钥过期，请刷新页面');
-                        break;
-                    case 502:
-                        wx.alert('上游服务接口异常，请稍后重试');
-                        break;
-                    default:
-                        console.log(res);
-                        wx.alert('出现未知错误，状态码：'+res.code);
-                        break;
+                if (typeof(res.errorType) !== 'undefined') {
+                    wx.alert('阿里运行环境报错<br>错误类型：' + res.errorType + '<br>错误信息：' + res.errorMessage + '<br>错误发生文件位置：' + res.stackTrace.file + '<br>错误代码所在行定位：' + res.stackTrace.line);
+                } else {
+                    switch (res.code) {
+                        case 200:
+                            if (res.data.length === 0) {
+                                wx.alert('您所查询的人员在浙江省内暂无核酸检测记录︿(￣︶￣)︿');
+                            } else {
+                                that.setState({
+                                    rnaReport: res.data
+                                });
+                            }
+                            break;
+                        case 400:
+                            wx.alert(res.msg);
+                            break;
+                        case 401:
+                            wx.alert('未授权的访问');
+                            break;
+                        case 403:
+                            wx.alert('访问密钥过期，请刷新页面');
+                            break;
+                        case 502:
+                            wx.alert('上游服务接口异常，请稍后重试');
+                            break;
+                        default:
+                            console.log(res);
+                            wx.alert('出现未知错误，状态码：' + res.code);
+                            break;
+                    }
                 }
             }).catch((err) => {
                 console.log(err);
