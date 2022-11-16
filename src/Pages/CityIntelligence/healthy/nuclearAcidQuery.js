@@ -119,7 +119,9 @@ export default class NuclearAcidQuery extends Component {
                                 <button className="weui-btn weui-btn_primary weui-btn_inline"
                                         onClick={this.getNuclearAcid.bind(this)}>立即查询
                                 </button>
-                                <button className="weui-btn weui-btn_default weui-btn_inline">老幼助查</button>
+                                <button className="weui-btn weui-btn_default weui-btn_inline" onClick={() => {
+                                    wx.alert('H5端老幼助查功能暂未开放');
+                                }}>老幼助查</button>
                             </div>
                             <div className="weui-cell weui-cell_input">
                                 <ul style={{fontSize: '10px', padding: '10px', textAlign: 'left'}}>
@@ -152,7 +154,7 @@ export default class NuclearAcidQuery extends Component {
                             <div className="weui-panel__hd" onClick={() => {
                                 this.setState({ rnaReport: [] })
                             }}>
-                                返回搜索页面
+                                返回查询页面
                             </div>
                             <div className="weui-panel__bd" style={{textAlign: 'left'}}>
                                 {this.state.rnaReport.map((v, i) => {

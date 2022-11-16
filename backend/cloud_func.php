@@ -43,8 +43,7 @@ function startResponseDispatcher($obj) {
             $userAgent = !empty($obj['headers']['User-Agent']) ? $obj['headers']['User-Agent'][0] : '';
             if ($obj['queries']['token'] != md5(date('Y', time()).'|'.$userAgent)) return sendAliFcResponse([
                 'code' => 403,
-                'msg' => '访问令牌无效',
-                'token' => md5(date('Y', time()).'|'.$userAgent)
+                'msg' => '访问令牌无效'
             ]);
             if (empty($obj['body'])) return sendAliFcResponse([
                 'code' => 400,
