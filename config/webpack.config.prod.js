@@ -8,6 +8,7 @@ var ManifestPlugin = require('webpack-manifest-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var paths = require('./paths');
 var getClientEnvironment = require('./env');
+var TerserPlugin = require('terser-webpack-plugin');
 
 
 
@@ -46,6 +47,10 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
 module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()]
+  },
   // Don't attempt to continue if there are any errors.
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
@@ -85,7 +90,7 @@ module.exports = {
       'react-native': 'react-native-web'
     }
   },
-  
+
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
@@ -124,7 +129,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: 'babel',
-        
+
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
@@ -165,7 +170,7 @@ module.exports = {
       // Remember to add the new extension(s) to the "url" loader exclusion list.
     ]
   },
-  
+
   // We use PostCSS for autoprefixing only.
   postcss: function() {
     return [
@@ -213,7 +218,7 @@ module.exports = {
     // Try to dedupe duplicated modules, if any:
     new webpack.optimize.DedupePlugin(),
     // Minify the code.
-    new webpack.optimize.UglifyJsPlugin({
+    /*new webpack.optimize.UglifyJsPlugin({
       compress: {
         screw_ie8: true, // React doesn't support IE8
         warnings: false
@@ -225,7 +230,7 @@ module.exports = {
         comments: false,
         screw_ie8: true
       }
-    }),
+    }),*/
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin(cssFilename),
     // Generate a manifest file which contains a mapping of all asset filenames

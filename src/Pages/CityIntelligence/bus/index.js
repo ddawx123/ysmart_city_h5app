@@ -16,11 +16,6 @@ class BusQueryForm extends Component {
     }
     componentDidUpdate(prevProps, prevState) {
     }
-    handleChange = (element) => {
-        this.setState({
-            keyword: element.target.value
-        })
-    }
     clearSearchResult() {
         this.setState({
             stationList: []
@@ -74,8 +69,11 @@ class BusQueryForm extends Component {
                                     <div className="weui-label">站点名称</div>
                                 </div>
                                 <div className="weui-cell__bd">
-                                    <input className="weui-input" type="text" placeholder="请输入站点名称"
-                                           value={this.state.keyword} onChange={this.handleChange.bind(this)}/>
+                                    <input className="weui-input" type="text" placeholder="请输入站点名称" onChange={(event) => {
+                                        this.setState({
+                                            keyword: event.target.value
+                                        })
+                                    }} value={this.state.keyword} />
                                 </div>
                             </div>
                         </div>
