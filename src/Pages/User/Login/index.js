@@ -4,8 +4,9 @@ import 'weui';
 import 'react-weui/build/packages/react-weui.css';
 import './index.css';
 import Header from '../../Layout/Header';
-import vcodeSrc from '../../logo.svg';
+import vCodeDemo from '../../logo.svg';
 import TabBar from "../../Layout/Tabbar";
+import SSOLoginForm from "./components/ssoLoginForm";
 
 class Login extends Component {
     constructor(props) {
@@ -24,9 +25,9 @@ class Login extends Component {
     render() {
         if (this.state.casIntegrated) {
             return (
-                <div className="App-casiframe">
-                    <Header appTitle="统一登录中心" />
-                    <iframe frameBorder={"no"} src="https://id.dscitech.com/cas/login?service=http://iotgeek.cn/auth/login/sso/callback&themeUrl=https://iotgeek.cn/cas_theme.js" style={{position: 'absolute', width: '100%', height: '100%'}}></iframe>
+                <div className="App">
+                    <SSOLoginForm loginTitle={"悦城云服务 - 统一登录中心"} servletUrl={"https://id.dscitech.com/cas/login?service=http://iotgeek.cn/auth/login/sso/callback&themeUrl=https://iotgeek.cn/cas_theme.js"} />
+                    <TabBar />
                 </div>
             );
         } else {
@@ -53,7 +54,7 @@ class Login extends Component {
                                 <Input type="password" placeholder="输入账户密码"/>
                             </CellBody>
                         </FormCell>
-                        <FormCell vcode>
+                        <FormCell>
                             <CellHeader>
                                 <Label>验证码</Label>
                             </CellHeader>
@@ -61,7 +62,7 @@ class Login extends Component {
                                 <Input type="text" placeholder="输入图形验证码"/>
                             </CellBody>
                             <CellFooter>
-                                <VCode src={vcodeSrc}/>
+                                <VCode src={vCodeDemo}/>
                             </CellFooter>
                         </FormCell>
                     </Form>
@@ -77,7 +78,7 @@ class Login extends Component {
                         <br/>
                         &copy; 2012-{this.state.fullYear} DingStudio Technology
                     </p>
-                    <TabBar/>
+                    <TabBar />
                 </div>
             );
         }
