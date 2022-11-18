@@ -10,7 +10,7 @@ import './Pages/darkSupport.css';
 import BusQueryForm from "./Pages/CityIntelligence/bus";
 import BusDetailScreen from "./Pages/CityIntelligence/bus/detail";
 import NuclearAcidQuery from "./Pages/CityIntelligence/healthy/nuclearAcidQuery";
-
+import './vConsole';
 
 ReactDOM.render(
   <Router history={ hashHistory }>

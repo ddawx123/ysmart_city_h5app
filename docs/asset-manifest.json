@@ -1,15 +1,15 @@
 {
   "main.css": "static/css/main.7bff1673.css",
   "main.css.map": "static/css/main.7bff1673.css.map",
-  "main.js": "static/js/main.3feda361.js",
-  "main.js.map": "static/js/main.3feda361.js.map",
-  "static\\media\\airport.svg": "static/media/airport.9c98ba6b.svg",
-  "static\\media\\eat.svg": "static/media/eat.a976e4bd.svg",
-  "static\\media\\library.svg": "static/media/library.c654c797.svg",
-  "static\\media\\logo.svg": "static/media/logo.ee7cd8ed.svg",
-  "static\\media\\metro.svg": "static/media/metro.1bcf794a.svg",
-  "static\\media\\railway.svg": "static/media/railway.c0f6c4c3.svg",
-  "static\\media\\traffic.svg": "static/media/traffic.b16b9d45.svg",
-  "static\\media\\travel.svg": "static/media/travel.b49aa66c.svg",
-  "static\\media\\weather.svg": "static/media/weather.2e230f32.svg"
+  "main.js": "static/js/main.508e4e58.js",
+  "main.js.map": "static/js/main.508e4e58.js.map",
+  "static/media/airport.svg": "static/media/airport.9c98ba6b.svg",
+  "static/media/eat.svg": "static/media/eat.a976e4bd.svg",
+  "static/media/library.svg": "static/media/library.c654c797.svg",
+  "static/media/logo.svg": "static/media/logo.5d5d9eef.svg",
+  "static/media/metro.svg": "static/media/metro.1bcf794a.svg",
+  "static/media/railway.svg": "static/media/railway.c0f6c4c3.svg",
+  "static/media/traffic.svg": "static/media/traffic.b16b9d45.svg",
+  "static/media/travel.svg": "static/media/travel.b49aa66c.svg",
+  "static/media/weather.svg": "static/media/weather.2e230f32.svg"
 }
