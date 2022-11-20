@@ -21,18 +21,17 @@ customized_plug.on('addTool', function(callback) {
     callback([{
         name: '重载当前页',
         onClick: function(event) {
-            if (event.isTrusted && window.confirm('确认通过控制台直接刷新当前页面吗？未保存的数据将丢失。')) {
+            console.log(event.isTrusted);
+            if (window.confirm('确认通过控制台直接刷新当前页面吗？未保存的数据将丢失。')) {
                 location.reload();
             }
         }
     }, {
         name: '激活VCon常驻',
         onClick: function(event) {
-            if (event.isTrusted) {
-                console.log('激活VCon常驻成功');
-                alert('VConsole 在本次会话中将保持常驻状态');
-                window.con.showSwitch();
-            }
+            console.log('激活VCon常驻成功', event.isTrusted);
+            alert('VConsole 在本次会话中将保持常驻状态');
+            window.con.showSwitch();
         }
     }]);
 });
