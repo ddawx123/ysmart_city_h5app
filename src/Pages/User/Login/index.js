@@ -26,7 +26,7 @@ class Login extends Component {
         if (this.state.casIntegrated) {
             return (
                 <div className="App">
-                    <SSOLoginForm loginTitle={"悦城云服务 - 统一登录中心"} servletUrl={"https://id.dscitech.com/cas/login?service=http://iotgeek.cn/auth/login/sso/callback&themeUrl=https://iotgeek.cn/cas_theme.js"} />
+                    <SSOLoginForm loginTitle={"悦城云服务 - 统一登录中心"} servletUrl={"https://api.dscitech.com/user/login"} />
                     <TabBar />
                 </div>
             );
