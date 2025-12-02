@@ -1,0 +1,11 @@
+export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "https://api.dscitech.com:443";
+// export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://127.0.0.1:8080/open";
+export const HEALTHY_BASE_URL = process.env.REACT_APP_HEALTHY_BASE_URL || "http://106.12.131.105:8080";
+export const WEATHER_PATH = "/api/weather";
+export const BUS_STATION_SEARCH_PATH = "/api/bus/station/search";
+export const BUS_STATION_DETAIL_PATH = "/api/bus/station/detail";
+// export const BUS_STATION_DETAIL_PATH = "/cities/bus/station/detail";
+export const USER_LOGIN_PATH = "/user/login";
+export const HEALTHY_NUCLEAR_ACID_PATH = "/v1/healthy/nuclear-acid";
+export const joinApi = (path) => `${API_BASE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
+export const joinHealthy = (path) => `${HEALTHY_BASE_URL}${path.startsWith("/") ? "" : "/"}${path}`;

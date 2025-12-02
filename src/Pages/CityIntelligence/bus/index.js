@@ -3,6 +3,7 @@ import Header from '../../Layout/Header';
 import busIcon from './images/bus.png';
 import './index.css';
 import { HttpClient } from '../../../Api/httpClient'
+import { joinApi, BUS_STATION_SEARCH_PATH } from "../../../Api/endpoints";
 import SearchResult from "./searchResult";
 import wx from 'weui.js';
 
@@ -28,7 +29,7 @@ class BusQueryForm extends Component {
             console.log(this.state.keyword)
             console.log(HttpClient);
             let loading = wx.loading('查询中');
-            HttpClient.post('https://api.dscitech.com/api/bus/station/search', {
+            HttpClient.post(joinApi(BUS_STATION_SEARCH_PATH), {
                 keyword: this.state.keyword
             }).then((response) => {
                 loading.hide();

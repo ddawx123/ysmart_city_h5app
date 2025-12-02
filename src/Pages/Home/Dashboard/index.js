@@ -16,6 +16,7 @@ import airportIcon from '../../../Images/airport.svg';
 import nuclearAcidIcon from '../../CityIntelligence/healthy/images/nuclearAcid.png';
 import './index.css';
 import {HttpClient} from "../../../Api/httpClient";
+import { joinApi, WEATHER_PATH } from "../../../Api/endpoints";
 
 class Dashboard extends Component {
     componentWillMount() {
@@ -86,7 +87,7 @@ class Dashboard extends Component {
     }
     componentDidMount() {
         let that = this;
-        HttpClient.get('https://api.dscitech.com/api/weather').then((response) => {
+        HttpClient.get(joinApi(WEATHER_PATH)).then((response) => {
             response.json().then((res) => {
                 console.log(res);
                 if (res.code === 200) {

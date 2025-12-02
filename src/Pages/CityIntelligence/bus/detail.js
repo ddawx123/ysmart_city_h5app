@@ -3,6 +3,7 @@ import Header from '../../Layout/Header';
 import busIcon from './images/bus.png';
 import './index.css';
 import { HttpClient } from '../../../Api/httpClient'
+import { joinApi, BUS_STATION_DETAIL_PATH } from "../../../Api/endpoints";
 import VehicleScreen from "./vehicleScreen";
 import wx from 'weui.js';
 
@@ -14,7 +15,8 @@ export default class BusDetailScreen extends Component {
             stationId: '',
             vehicleList: [],
             isLoad: false,
-            myTimer: null
+            myTimer: null,
+            preventRefresh: false
         };
     }
     componentWillMount() {
@@ -31,7 +33,7 @@ export default class BusDetailScreen extends Component {
         if (this.state.regionId !== '' && this.state.stationId !== '') {
             let that = this;
             let loading = wx.loading('加载中');
-            HttpClient.post('https://api.dscitech.com/api/bus/station/detail', {
+            HttpClient.post(joinApi(BUS_STATION_DETAIL_PATH), {
                 keyword: that.state.stationId,
                 city: that.state.regionId
             }).then((response) => {
@@ -58,7 +60,8 @@ export default class BusDetailScreen extends Component {
             this.setState({ isLoad: true });
             let that = this;
             let timer = window.setInterval(() => {
-                HttpClient.post('https://api.dscitech.com/api/bus/station/detail', {
+                if (this.state.preventRefresh) return;
+                HttpClient.post(joinApi(BUS_STATION_DETAIL_PATH), {
                     keyword: that.state.stationId,
                     city: that.state.regionId
                 }).then((response) => {
@@ -68,14 +71,20 @@ export default class BusDetailScreen extends Component {
                             vehicleList: res
                         });
                     }).catch((err) => {
-                        window.clearInterval(that.state.myTimer); //服务异常时自动停止刷新定时器
+                        that.setState({ preventRefresh: true });
+                        // window.clearInterval(that.state.myTimer); //服务异常时自动停止刷新定时器
                         console.log(err);
-                        wx.alert('数据解析异常，请稍后重试');
+                        wx.alert('数据解析异常，请稍后重试', function () {
+                            that.setState({ preventRefresh: false });
+                        });
                     })
                 }).catch((error) => {
-                    window.clearInterval(that.state.myTimer); //网络异常时自动停止刷新定时器
+                    that.setState({ preventRefresh: true });
+                    // window.clearInterval(that.state.myTimer); //网络异常时自动停止刷新定时器
                     console.log(error);
-                    wx.alert('网络连接异常');
+                    wx.alert('网络连接异常', function () {
+                        that.setState({ preventRefresh: false });
+                    });
                 })
             }, 5000);
             this.setState({ myTimer: timer })

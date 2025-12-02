@@ -7,6 +7,7 @@ import Header from '../../Layout/Header';
 import vCodeDemo from '../../logo.svg';
 import TabBar from "../../Layout/Tabbar";
 import SSOLoginForm from "./components/ssoLoginForm";
+import { joinApi, USER_LOGIN_PATH } from "../../../Api/endpoints";
 
 class Login extends Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class Login extends Component {
         if (this.state.casIntegrated) {
             return (
                 <div className="App">
-                    <SSOLoginForm loginTitle={"悦城云服务 - 统一登录中心"} servletUrl={"https://api.dscitech.com/user/login"} />
+                    <SSOLoginForm loginTitle={"悦城云服务 - 统一登录中心"} servletUrl={joinApi(USER_LOGIN_PATH)} />
                     <TabBar />
                 </div>
             );

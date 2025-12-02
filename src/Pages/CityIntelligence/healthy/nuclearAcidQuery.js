@@ -3,6 +3,7 @@ import Header from '../../Layout/Header';
 import nuclearAcidIcon from './images/nuclearAcid.png';
 import './nuclearAcidQuery.css';
 import { HttpClient } from '../../../Api/httpClient'
+import { joinHealthy, HEALTHY_NUCLEAR_ACID_PATH } from "../../../Api/endpoints";
 import wx from 'weui.js';
 import md5 from 'js-md5';
 
@@ -29,7 +30,7 @@ export default class NuclearAcidQuery extends Component {
         let loading = wx.loading('查询中');
         let that = this;
         let send_at = (new Date().getFullYear());
-        HttpClient.post('http://106.12.131.105:8080/v1/healthy/nuclear-acid?token='+md5(send_at+'|'+navigator.userAgent), {
+        HttpClient.post(joinHealthy(HEALTHY_NUCLEAR_ACID_PATH + '?token=' + md5(send_at+'|'+navigator.userAgent)), {
             realName: that.state.realName,
             idNumber: that.state.idNumber
         }).then((response) => {
